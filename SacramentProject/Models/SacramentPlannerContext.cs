@@ -9,14 +9,9 @@ namespace SacramentProject.Models
         public virtual DbSet<SacramentProgram> SacramentProgram { get; set; }
         public virtual DbSet<Speakers> Speakers { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=SacramentPlanner;Trusted_Connection=True;");
-            }
-        }
+        public SacramentPlannerContext(DbContextOptions<SacramentPlannerContext> options)
+            : base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
