@@ -47,7 +47,7 @@ namespace SacramentProject.Controllers
         // GET: Speakers/Create
         public IActionResult Create()
         {
-            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "ClosingPrayer");
+            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace SacramentProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "ClosingPrayer", speakers.SacramentProgramId);
+            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate", speakers.SacramentProgramId);
             return View(speakers);
         }
 
@@ -81,7 +81,7 @@ namespace SacramentProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "ClosingPrayer", speakers.SacramentProgramId);
+            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate", speakers.SacramentProgramId);
             return View(speakers);
         }
 
@@ -117,7 +117,7 @@ namespace SacramentProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "ClosingPrayer", speakers.SacramentProgramId);
+            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate", speakers.SacramentProgramId);
             return View(speakers);
         }
 
