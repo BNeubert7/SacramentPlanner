@@ -2,22 +2,23 @@
 
 @{
     ViewData["Title"] = "Index";
+    var url = Url.ActionContext.RouteData.Values["id"];
 }
 
-<h2>Index</h2>
+<h2>Speaker List</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="~/Speakers/Create/@url">Add New Speaker to Program</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Topic)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.SacramentProgram)
             </th>
@@ -25,23 +26,31 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Topic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SacramentProgram.MeetingDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SpeakerProgramId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SpeakerProgramId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SpeakerProgramId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            if (item.SacramentProgramId == Convert.ToInt32(url))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Topic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SacramentProgram.MeetingDate)
+                </td>
+                <td>
+                    <a href="/Speakers/Edit/@item.SpeakerProgramId/@url">Edit</a> |
+                    <a href="/Speakers/Details/@item.SpeakerProgramId/@url">Details</a> |
+                    <a href="/Speakers/Delete/@item.SpeakerProgramId/@url">Delete</a>
+                </td>
+            </tr>
+            }
+        }
     </tbody>
 </table>
+
+<div>
+    <a href="/SacramentPrograms">Back to Sacrament Program</a>
+</div>

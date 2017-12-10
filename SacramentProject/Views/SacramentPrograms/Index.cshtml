@@ -4,14 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Sacrament Program</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Program</a>
+</p>
+<p>
+    To add, edit, or delete speakers to a Sacrament Program, click on View Speakers in table below.
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>Edit</th>
                 <th>
                     @Html.DisplayNameFor(model => model.MeetingDate)
                 </th>
@@ -36,12 +40,19 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ClosingPrayer)
                 </th>
-            <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Speakers)
+                </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                <!--<a asp-action="Edit" asp-route-id="@item.SacramentProgramId">Edit</a> | -->
+                <a asp-action="Details" asp-route-id="@item.SacramentProgramId">Info</a> |
+                <a asp-action="Delete" asp-route-id="@item.SacramentProgramId">Delete</a>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MeetingDate)
             </td>
@@ -67,9 +78,7 @@
                 @Html.DisplayFor(modelItem => item.ClosingPrayer)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.SacramentProgramId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SacramentProgramId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SacramentProgramId">Delete</a>
+                <a href="~/Speakers/Index/@item.SacramentProgramId">View Speakers</a>
             </td>
         </tr>
 }

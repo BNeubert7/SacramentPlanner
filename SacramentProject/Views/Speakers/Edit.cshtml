@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var url = Url.ActionContext.RouteData.Values["fid"];
 }
 
 <h2>Edit</h2>
@@ -14,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="SpeakerProgramId" />
             <div class="form-group">
-                <label asp-for="SacramentProgramId" class="control-label"></label>
+                <label asp-for="SacramentProgramId" class="control-label">Sacrament Date</label>
                 <select asp-for="SacramentProgramId" class="form-control" asp-items="ViewBag.SacramentProgramId"></select>
                 <span asp-validation-for="SacramentProgramId" class="text-danger"></span>
             </div>
@@ -36,7 +37,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="/Speakers/Index/@url">Back to List</a>
 </div>
 
 @section Scripts {

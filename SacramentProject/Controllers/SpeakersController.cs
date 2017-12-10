@@ -26,7 +26,7 @@ namespace SacramentProject.Controllers
         }
 
         // GET: Speakers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int? fid)
         {
             if (id == null)
             {
@@ -47,7 +47,7 @@ namespace SacramentProject.Controllers
         // GET: Speakers/Create
         public IActionResult Create()
         {
-            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate");
+            //ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "SacramentProgramId");
             return View();
         }
 
@@ -62,14 +62,15 @@ namespace SacramentProject.Controllers
             {
                 _context.Add(speakers);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                String myIndex = "Index/" + speakers.SacramentProgramId;
+                return RedirectToAction(myIndex);
             }
-            ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate", speakers.SacramentProgramId);
+            //ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate", speakers.SacramentProgramId);
             return View(speakers);
         }
 
         // GET: Speakers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int? fid)
         {
             if (id == null)
             {
@@ -115,14 +116,15 @@ namespace SacramentProject.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                String myIndex = "Index/" + speakers.SacramentProgramId;
+                return RedirectToAction(myIndex);
             }
             ViewData["SacramentProgramId"] = new SelectList(_context.SacramentProgram, "SacramentProgramId", "MeetingDate", speakers.SacramentProgramId);
             return View(speakers);
         }
 
         // GET: Speakers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int? fid)
         {
             if (id == null)
             {
@@ -148,7 +150,8 @@ namespace SacramentProject.Controllers
             var speakers = await _context.Speakers.SingleOrDefaultAsync(m => m.SpeakerProgramId == id);
             _context.Speakers.Remove(speakers);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            String myIndex = "Index/" + speakers.SacramentProgramId;
+            return RedirectToAction(myIndex);
         }
 
         private bool SpeakersExists(int id)

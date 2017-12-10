@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "Create";
+    var url = Url.ActionContext.RouteData.Values["id"];
+    int id = Convert.ToInt32(url);
+    //asp - items = "ViewBag.SacramentProgramId"
 }
 
 <h2>Create</h2>
@@ -12,9 +15,9 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="SacramentProgramId" class="control-label"></label>
-                <select asp-for="SacramentProgramId" class ="form-control" asp-items="ViewBag.SacramentProgramId"></select>
+                <input asp-for="SacramentProgramId" class ="form-control" value="@id"/>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -34,7 +37,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index/@id">Back to List</a>
 </div>
 
 @section Scripts {
