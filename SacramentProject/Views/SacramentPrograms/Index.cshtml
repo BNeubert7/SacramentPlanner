@@ -15,7 +15,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Edit</th>
+            <th>Details</th>
                 <th>
                     @Html.DisplayNameFor(model => model.MeetingDate)
                 </th>
@@ -31,9 +31,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.SacramentSong)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IntermediateSong)
-                </th>
+                <!--<th>
+                    Html.DisplayNameFor(model => model.IntermediateSong)
+                </th>-->
                 <th>
                     @Html.DisplayNameFor(model => model.ClosingSong)
                 </th>
@@ -49,7 +49,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <!--<a asp-action="Edit" asp-route-id="@item.SacramentProgramId">Edit</a> | -->
+                <a asp-action="Edit" asp-route-id="@item.SacramentProgramId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SacramentProgramId">Info</a> |
                 <a asp-action="Delete" asp-route-id="@item.SacramentProgramId">Delete</a>
             </td>
@@ -68,9 +68,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SacramentSong)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IntermediateSong)
-            </td>
+            <!--<td>
+                Html.DisplayFor(modelItem => item.IntermediateSong)
+            </td>-->
             <td>
                 @Html.DisplayFor(modelItem => item.ClosingSong)
             </td>
