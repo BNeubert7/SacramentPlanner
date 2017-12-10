@@ -59,8 +59,8 @@ namespace SacramentProject.Controllers
             {
                 _context.Add(sacramentProgram);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                return RedirectToAction("Create/"+sacramentProgram.SacramentProgramId, "Speakers",sacramentProgram.SacramentProgramId);
+                }
             return View(sacramentProgram);
         }
 
